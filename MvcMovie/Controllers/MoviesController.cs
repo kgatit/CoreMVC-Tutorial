@@ -25,7 +25,7 @@ namespace MvcMovie.Controllers
             return View(await _context.Movie.ToListAsync());
         }
 
-        // GET: Movies/Details/5
+        // GET: Movies/Details/1
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -86,7 +86,9 @@ namespace MvcMovie.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, 
+            [Bind(nameof(Movie.Id), nameof(Movie.Title), nameof(Movie.ReleaseDate), 
+            nameof(Movie.Genre), nameof(Movie.Price))] Movie movie)
         {
             if (id != movie.Id)
             {
