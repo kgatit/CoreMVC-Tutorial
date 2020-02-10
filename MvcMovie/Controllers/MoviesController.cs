@@ -20,8 +20,12 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            var movies = from m in _context.Movie
+                         select m;
+
+
             return View(await _context.Movie.ToListAsync());
         }
 
